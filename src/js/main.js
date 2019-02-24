@@ -80,7 +80,7 @@
                     .map(s => s.destroy())
                     .filter(s => !!s);
             })
-            .catch(err => console.log('canceled', err));
+            .catch(err => console.log('cancelled', err));
     }
 
     /**
