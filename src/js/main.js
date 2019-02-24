@@ -3,7 +3,7 @@
     const ADD_BTN = '.add-stopwatch';
     const FOOTER = '.page-footer';
 
-    const settings = new Settings(onRemove);
+    const settings = new StopWatchSettings(onRemove);
 
     // data
     let stopwatches = [];
@@ -23,11 +23,17 @@
         let form = footer.querySelector('form');
         if(!form) throw new Error(`Could not find the settings form.`);
 
-        // set the value
+        // set the value on the from
         form.autoStart.checked = settings.autoStart;
+        form.resetOnStop.checked = settings.resetOnStop;
 
-        // auto start on change
+        // auto start on change event
         form.autoStart.addEventListener('change', () => settings.autoStart = !settings.autoStart);
+
+        // reset on stop on change event
+        form.resetOnStop.addEventListener('change', () =>{
+            settings.resetOnStop = !settings.resetOnStop;
+        });
 
         // start all
         form.startAll.addEventListener('click', () => stopwatches.forEach(s => s.start()));

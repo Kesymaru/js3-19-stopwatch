@@ -11,11 +11,11 @@ class StopWatch {
      * @param {string} container
      * @param {Settings} settings optional default new Settings()
      */
-    constructor (container, settings = new Settings()){
+    constructor (container, settings = new StopWatchSettings()){
         if(!container)
             throw new Error(`Invalid container: ${container}`);
 
-        if(!settings || !(settings instanceof Settings))
+        if(!settings || !(settings instanceof StopWatchSettings))
             throw new Error(`Invalid settings: ${settings}`);
 
         // settings
@@ -197,6 +197,8 @@ class StopWatch {
             clearInterval(this._interval);
             this._interval = null;
         }
+
+        if(this._settings.resetOnStop) this.clear();
 
         StopWatchDoom.disableButton(this.btnStop);
         StopWatchDoom.enableButton(this.btnStart);

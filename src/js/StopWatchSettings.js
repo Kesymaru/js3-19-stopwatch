@@ -1,7 +1,7 @@
 /**
  * StopWatch Settings class
  */
-class Settings {
+class StopWatchSettings {
     autoStart = true; // automatically start when stopwatch is created
     resetOnStop = false; // reset the time when stopped
 
