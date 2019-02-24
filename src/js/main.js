@@ -16,7 +16,7 @@
      * Adds a new stopwatch instance
      */
     function add () {
-        stopwatches.push(new Stopwatch(CONTAINER, settings));
+        stopwatches.push(new StopWatch(CONTAINER, settings));
     }
 
     function settingForm () {
@@ -39,10 +39,42 @@
         form.stopAll.addEventListener('click', () => stopwatches.forEach(s => s.stop()));
 
         // remove all
-        form.removeAll.addEventListener('click', () => stopwatches = stopwatches
-            .map(s => s.destroy())
-            .filter(s => !!s)
-        );
+        form.removeAll.addEventListener('click', removeAll);
+    }
+
+    /**
+     * Remove all
+     * Opens a modal to confirm with the user the action
+     * @returns {boolean}
+     */
+    function removeAll () {
+        if(!stopwatches.length) return false;
+
+        let content = StopWatchDoom.div();
+
+        let header = document.createElement('h5');
+        header.innerText = 'Are you sure you?';
+        content.appendChild(header);
+
+        let p = document.createElement('p');
+        p.innerText = `This action is irreversible, ${stopwatches.length} StopWatch${stopwatches.length > 1 ? 'es' : ''} will be destroyed.`;
+        content.appendChild(p);
+
+        // create the modal
+        let modal = new Modal({
+            title: 'Remove All',
+            content,
+            autoOpen: true,
+        });
+
+        // promise to wait for user cancelation or confirmation
+        modal.promise.then(result => {
+                // remove all the stopwatches
+                stopwatches = stopwatches
+                    .map(s => s.destroy())
+                    .filter(s => !!s);
+            })
+            .catch(err => console.log('canceled', err));
     }
 
     /**

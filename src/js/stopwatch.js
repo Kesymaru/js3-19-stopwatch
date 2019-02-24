@@ -1,8 +1,8 @@
 /**
- * Stopwatch class
- * generates the stopwatch html can be used to crea multiples instances
+ * StopWatch class
+ * generates the stopwatch html that can be used to create multiples instances
  */
-class Stopwatch {
+class StopWatch {
     _interval = null;
     _time = 0;
 
@@ -64,34 +64,34 @@ class Stopwatch {
      * Compose the stopwatch HTML and render it
      */
     render () {
-        let col = Stopwatch.div({className: ['col', 's12', 'm4', 'l3']});
+        let col = StopWatchDoom.div({className: ['col', 's12', 'm4', 'l3']});
         this.element = col;
 
         // compose the card for the stopwatch
-        col.appendChild(this._card());
+        col.appendChild(this.card());
 
         this.container.appendChild(col);
     }
 
-    _card() {
+    card() {
         // card
-        let card = Stopwatch.div({className: ['card', 'blue-grey', 'darken-1']});
+        let card = StopWatchDoom.div({className: ['card', 'blue-grey', 'darken-1']});
 
         // card close button
-        card.appendChild(Stopwatch.button({
+        card.appendChild(StopWatchDoom.button({
             className: ['btn-flat', 'waves-effect', 'waves-light', 'right', 'white-text'],
             icon: {
                 text: 'clear',
-                className: ['material-icons']
+                // className: ['material-icons']
             },
             click: () => this.remove()
         }));
 
         // card content
-        let content = Stopwatch.div({className: ['card-content', 'white-text']});
+        let content = StopWatchDoom.div({className: ['card-content', 'white-text']});
         card.appendChild(content);
 
-        // let timer = Stopwatch.div({className: ['row']});
+        // let timer = StopWatchDoom.div({className: ['row']});
         let timer = document.createElement('h3');
         timer.classList.add('center');
         timer.innerText = this.time;
@@ -99,7 +99,7 @@ class Stopwatch {
         content.appendChild(timer);
 
         // compose the card actions buttons
-        card.appendChild(this._cardActions());
+        card.appendChild(this.cardActions());
 
         return card;
     }
@@ -110,21 +110,20 @@ class Stopwatch {
      * @returns {HTMLDivElement}
      * @private
      */
-    _cardActions () {
+    cardActions () {
         // card actions
-        let actions = Stopwatch.div({className: ['card-action']});
-        let row = Stopwatch.div({className: ['row']});
+        let actions = StopWatchDoom.div({className: ['card-action']});
+        let row = StopWatchDoom.div({className: ['row']});
         actions.appendChild(row);
 
-        let col = Stopwatch.div({className: ['col', 's4']});
+        let col = StopWatchDoom.div({className: ['col', 's4']});
 
         // start button
-        this.btnStart = Stopwatch.button({
-            // text: 'Start',
-            className: ['btn', 'waves-effect', 'waves-light'],
+        this.btnStart = StopWatchDoom.button({
+            // className: ['btn', 'waves-effect', 'waves-light'],
             icon: {
                 text: 'play_arrow',
-                className: ['material-icons']
+                // className: ['material-icons']
             },
             click: () => this.start()
         });
@@ -132,15 +131,14 @@ class Stopwatch {
         row.appendChild(col);
 
         // new col
-        col = Stopwatch.div({className: ['col', 's4', 'center-align']});
+        col = StopWatchDoom.div({className: ['col', 's4', 'center-align']});
 
         // clear button
-        this.btnClear = Stopwatch.button({
-            // text: 'Stop',
-            className: ['btn', 'waves-effect', 'waves-light', 'disabled'],
+        this.btnClear = StopWatchDoom.button({
+            // className: ['btn', 'waves-effect', 'waves-light', 'disabled'],
             icon: {
                 text: 'replay',
-                className: ['material-icons']
+                // className: ['material-icons']
             },
             attrs: {
                 disabled: ''
@@ -151,10 +149,10 @@ class Stopwatch {
         row.appendChild(col);
 
         // new col
-        col = Stopwatch.div({className: ['col', 's4', 'right-align']});
+        col = StopWatchDoom.div({className: ['col', 's4', 'right-align']});
 
         // stop button
-        this.btnStop = Stopwatch.button({
+        this.btnStop = StopWatchDoom.button({
             // text: 'Stop',
             className: ['btn', 'waves-effect', 'waves-light', 'disabled'],
             icon: {
@@ -173,66 +171,6 @@ class Stopwatch {
     }
 
     /**
-     * Compose a DIV element
-     * @param {string} text optional
-     * @param {array} className optional
-     * @returns {HTMLDivElement}
-     */
-    static div ({text = '', className = []}) {
-        let div = document.createElement('div');
-        div.classList.add(...className);
-
-        if(text) div.innerText = text;
-
-        return div;
-    }
-
-    /**
-     * Compose a buttons
-     * @param {string} text default ''
-     * @param {array} className optional
-     * @param {object} icon optional
-     * @param {array} attrs button attributes optional
-     * @param {function} click handler optional
-     * @returns {HTMLButtonElement}
-     */
-    static button ({text = '', className = [], icon = null, attrs = null, click = null}) {
-        let button = document.createElement('button');
-        if(text) button.innerText = text;
-        button.classList.add(...className);
-
-        // button with icon
-        if(icon) button.appendChild(Stopwatch.icon(icon));
-
-        // button attributes
-        if(attrs && Array.isArray(attrs))
-            attrs.forEach((value, attr) => button.setAttribute(attr, value));
-
-        // click handler
-        if(click && typeof click === 'function')
-            button.addEventListener('click', click);
-
-        return button;
-    }
-
-    static icon ({text =  '', className = []}) {
-        let icon = document.createElement('i');
-        icon.innerText = text;
-        icon.classList.add(...className);
-        return icon;
-    }
-
-    static disableButton (btn) {
-        btn.setAttribute('disabled', '');
-        btn.classList.add('disabled');
-    }
-
-    static enableButton (btn) {
-        btn.removeAttribute('disabled');
-        btn.classList.remove('disabled');
-    }
-
-    /**
      * Start the stopwatch interval
      * @return {boolean} started
      */
@@ -246,9 +184,9 @@ class Stopwatch {
             this.timer.innerText = this.time;
         }, 1000);
 
-        Stopwatch.disableButton(this.btnStart);
-        Stopwatch.enableButton(this.btnStop);
-        Stopwatch.enableButton(this.btnClear);
+        StopWatchDoom.disableButton(this.btnStart);
+        StopWatchDoom.enableButton(this.btnStop);
+        StopWatchDoom.enableButton(this.btnClear);
     }
 
     /**
@@ -260,11 +198,11 @@ class Stopwatch {
             this._interval = null;
         }
 
-        Stopwatch.disableButton(this.btnStop);
-        Stopwatch.enableButton(this.btnStart);
+        StopWatchDoom.disableButton(this.btnStop);
+        StopWatchDoom.enableButton(this.btnStart);
 
-        if(this._time) Stopwatch.enableButton(this.btnClear);
-        else Stopwatch.disableButton(this.btnClear);
+        if(this._time) StopWatchDoom.enableButton(this.btnClear);
+        else StopWatchDoom.disableButton(this.btnClear);
     }
 
     /**
@@ -277,9 +215,9 @@ class Stopwatch {
         if(!this._interval) {
             this.timer.innerText = this.time;
 
-            Stopwatch.disableButton(this.btnClear);
-            Stopwatch.disableButton(this.btnStop);
-            Stopwatch.enableButton(this.btnStart)
+            StopWatchDoom.disableButton(this.btnClear);
+            StopWatchDoom.disableButton(this.btnStop);
+            StopWatchDoom.enableButton(this.btnStart)
         }
     }
 
