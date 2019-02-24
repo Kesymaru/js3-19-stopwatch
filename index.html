@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stop Watch</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="src/css/main.css">
+</head>
+<body>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">
+                StopWatch
+                <i class="material-icons">av_timer</i>
+            </a>
+        </div>
+    </nav>
+
+    <section class="stopwatch row"></section>
+
+    <button class="add-stopwatch btn-floating btn-large waves-effect waves-light right">
+        <i class="material-icons">add</i>
+    </button>
+
+    <footer class="page-footer">
+        <form class="row">
+            <div class="row">
+                <div class="col s12">
+                    <h5>Settings:</h5>
+                    <div class="switch">
+                        <label class="white-text">
+                            Auto start when created:
+                            <input type="checkbox" name="autoStart">
+                            <span class="lever"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <h5>Controls:</h5>
+                </div>
+                <div class="col s4 m2">
+                    <button type="button" name="startAll" class="waves-effect waves-light btn-small">
+                        Start All
+                        <i class="material-icons right">play_arrow</i>
+                    </button>
+                </div>
+                <div class="col s4 m2">
+                    <button type="button" name="clearAll" class="waves-effect waves-light btn-small">
+                        Clear all
+                        <i class="material-icons right">replay</i>
+                    </button>
+                </div>
+                <div class="col s4 m2">
+                    <button type="button" name="stopAll" class="waves-effect waves-light btn-small">
+                        Stop All
+                        <i class="material-icons right">stop</i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="button" name="removeAll" class="waves-effect waves-light btn-small red">
+                        Remove All
+                        <i class="material-icons right">clear</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="footer-copyright">
+            <div class="container center">
+                © 2019 Copyright Text
+            </div>
+        </div>
+    </footer>
+
+    <script src="src/js/settings.js"></script>
+    <script src="src/js/stopwatch.js"></script>
+    <script src="src/js/main.js"></script>
+</body>
+</html>
