@@ -73,6 +73,10 @@ class StopWatch {
         this.container.appendChild(col);
     }
 
+    /**
+     * Compose the stopwatch card DOM
+     * @returns {HTMLDivElement}
+     */
     card() {
         // card
         let card = StopWatchDoom.div({className: ['card', 'blue-grey', 'darken-1']});
@@ -133,7 +137,7 @@ class StopWatch {
         // new col
         col = StopWatchDoom.div({className: ['col', 's4', 'center-align']});
 
-        // clear button
+        // reset/clear button
         this.btnClear = StopWatchDoom.button({
             // className: ['btn', 'waves-effect', 'waves-light', 'disabled'],
             icon: {
@@ -153,7 +157,6 @@ class StopWatch {
 
         // stop button
         this.btnStop = StopWatchDoom.button({
-            // text: 'Stop',
             className: ['btn', 'waves-effect', 'waves-light', 'disabled'],
             icon: {
                 text: 'stop',
@@ -176,7 +179,7 @@ class StopWatch {
      */
     start () {
         // already started
-        if(this._interval) return true;
+        if(this._interval) return;
 
         // start a new interval
         this._interval = setInterval(() => {

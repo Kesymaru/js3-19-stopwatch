@@ -90,7 +90,7 @@ class Modal {
         let col = StopWatchDoom.div({className: ['col', 's6']});
         row.appendChild(col);
         
-        let btnSave = StopWatchDoom.button({
+        let btnCancel = StopWatchDoom.button({
             text: 'Cancel',
             className: ['btn', 'waves-effect', 'waves-light', 'left'],
             icon: {
@@ -99,11 +99,11 @@ class Modal {
             },
             click: () => this.close()
         });
-        col.appendChild(btnSave);
+        col.appendChild(btnCancel);
         row.appendChild(col);
 
         col = StopWatchDoom.div({className: ['col', 's6']});
-        let btnClose = StopWatchDoom.button({
+        let btnSave = StopWatchDoom.button({
             text: 'Continue',
             className: ['btn', 'waves-effect', 'waves-light', 'red'],
             icon: {
@@ -112,7 +112,7 @@ class Modal {
             },
             click: () => this.confirm()
         });
-        col.appendChild(btnClose);
+        col.appendChild(btnSave);
         row.appendChild(col);
 
         return row;

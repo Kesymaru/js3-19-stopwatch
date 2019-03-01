@@ -31,7 +31,7 @@
         form.autoStart.addEventListener('change', () => settings.autoStart = !settings.autoStart);
 
         // reset on stop on change event
-        form.resetOnStop.addEventListener('change', () =>{
+        form.resetOnStop.addEventListener('change', () => {
             settings.resetOnStop = !settings.resetOnStop;
         });
 
